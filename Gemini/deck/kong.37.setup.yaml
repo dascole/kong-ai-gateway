@@ -1,0 +1,79 @@
+_format_version: "3.0"
+services:
+- connect_timeout: 60000
+  enabled: true
+  host: generativelanguage.googleapis.com
+  name: gemini
+  port: 443
+  protocol: https
+  read_timeout: 60000
+  retries: 5
+  routes:
+  - https_redirect_status_code: 426
+    id: 76d0997b-e4ef-4a3b-8fec-f20b4b1264e6
+    path_handling: v0
+    paths:
+    - /gemini
+    plugins:
+    - config:
+        auth:
+          allow_override: false
+          aws_access_key_id: null
+          aws_secret_access_key: null
+          azure_client_id: null
+          azure_client_secret: null
+          azure_tenant_id: null
+          azure_use_managed_identity: false
+          gcp_service_account_json: null
+          gcp_use_service_account: false
+          header_name: null
+          header_value: null
+          param_location: query
+          param_name: key
+          param_value: <YOUR-API-KEY-KEY>
+        logging:
+          log_payloads: false
+          log_statistics: false
+        max_request_body_size: 8192
+        model:
+          name: gemini-1.5-pro
+          options:
+            anthropic_version: null
+            azure_api_version: "2023-05-15"
+            azure_deployment_id: null
+            azure_instance: null
+            bedrock: null
+            gemini:
+              api_endpoint: null
+              location_id: null
+              project_id: null
+            input_cost: null
+            llama2_format: null
+            max_tokens: 256
+            mistral_format: null
+            output_cost: null
+            temperature: null
+            top_k: null
+            top_p: null
+            upstream_path: null
+            upstream_url: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent
+          provider: gemini
+        model_name_header: true
+        response_streaming: allow
+        route_type: preserve
+      enabled: true
+      name: ai-proxy
+      protocols:
+      - grpc
+      - grpcs
+      - http
+      - https
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: true
+  write_timeout: 60000
