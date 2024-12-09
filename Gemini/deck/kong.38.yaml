@@ -10,7 +10,7 @@ services:
   retries: 5
   routes:
   - https_redirect_status_code: 426
-    id: 76d0997b-e4ef-4a3b-8fec-f20b4b1264e6
+    name: gemini-image-analysis
     path_handling: v0
     paths:
     - /gemini
@@ -30,7 +30,7 @@ services:
           header_value: null
           param_location: query
           param_name: key
-          param_value: <YOUR-API-KEY-KEY>
+          param_value: '{vault://env/gemini-api-key}'
         logging:
           log_payloads: false
           log_statistics: false
@@ -55,8 +55,8 @@ services:
             temperature: null
             top_k: null
             top_p: null
-            upstream_path: null
-            upstream_url: https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent
+            upstream_path: /v1beta/models/gemini-1.5-pro:generateContent
+            upstream_url: https://generativelanguage.googleapis.com
           provider: gemini
         model_name_header: true
         response_streaming: allow
